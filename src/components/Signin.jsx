@@ -1,10 +1,16 @@
+import * as yup from "yup";
 import { useFormik } from "formik";
 import { Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import theme from "../theme";
 
+const validationSchema = yup.object().shape({
+  username: yup.string().required("User name is required"),
+  password: yup.string().required("Password is required"),
+});
+
 const initialValues = {
-  userName: "",
+  username: "",
   password: "",
 };
 
@@ -15,34 +21,48 @@ const onSubmit = (values) => {
 const SignInForm = () => {
   const formik = useFormik({
     initialValues,
+    validationSchema,
     onSubmit,
   });
   return (
     <SafeAreaProvider>
       <SafeAreaView>
         <TextInput
-          style={styles.input}
-          id="userName"
-          name="userName"
+          style={
+            formik.touched.username && formik.errors.username
+              ? styles.error
+              : styles.input
+          }
+          id="username"
+          name="username"
           type="text"
           placeholder="username"
+          value={formik.values.username}
           onChange={formik.handleChange}
-          value={formik.values.userName}
+          onBlur={formik.handleBlur("username")}
         />
+        {formik.touched.username && formik.errors.username && (
+          <Text style={{ color: "red" }}>{formik.errors.username}</Text>
+        )}
         <TextInput
-          style={styles.input}
+          style={
+            formik.touched.password && formik.errors.password
+              ? styles.error
+              : styles.input
+          }
           id="password"
           name="password"
           type="text"
           placeholder="password"
           secureTextEntry
-          onChange={formik.handleChange}
           value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur("password")}
         />
-        <Pressable
-          onPress={() => onSubmit(formik.values)}
-          style={styles.button}
-        >
+        {formik.touched.password && formik.errors.password && (
+          <Text style={{ color: "red" }}>{formik.errors.password}</Text>
+        )}
+        <Pressable onPress={formik.handleSubmit} style={styles.button}>
           <Text style={{ color: theme.colors.textLabel }}>Sign in</Text>
         </Pressable>
       </SafeAreaView>
@@ -59,6 +79,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
+  },
+  error: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: "red",
   },
   button: {
     padding: 10,
