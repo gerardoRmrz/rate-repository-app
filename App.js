@@ -1,16 +1,16 @@
-/* import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native'; */
+import { StatusBar } from "expo-status-bar";
+import { NativeRouter } from "react-router-native";
+
+/*import { StyleSheet, Text, View } from 'react-native'; */
 import Main from "./src/components/Main";
 
 export default function App() {
-  return <Main />;
+  return (
+    <>
+      <StatusBar style="light" />
+      <NativeRouter>
+        <Main />
+      </NativeRouter>
+    </>
+  );
 }
-
-/* const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-}); */

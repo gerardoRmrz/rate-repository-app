@@ -50,6 +50,14 @@ const styles = StyleSheet.create({
   },
 });
 
+const formatCount = (count) => {
+  if (Math.round(count / 1000) > 0) {
+    return `${Math.round(count / 100) / 10}k`;
+  } else {
+    return `${count}`;
+  }
+};
+
 const RepositoryItem = ({ item }) => {
   return (
     <View style={styles.itemContainer}>
@@ -66,19 +74,21 @@ const RepositoryItem = ({ item }) => {
 
       <View style={styles.statsContainer}>
         <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{item.stargazersCount}</Text>
+          <Text style={styles.textBold}>
+            {formatCount(item.stargazersCount)}
+          </Text>
           <Text style={styles.textGray}>Stars</Text>
         </View>
         <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{item.forksCount}</Text>
+          <Text style={styles.textBold}>{formatCount(item.forksCount)}</Text>
           <Text style={styles.textGray}>Forks</Text>
         </View>
         <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{item.reviewCount}</Text>
+          <Text style={styles.textBold}>{formatCount(item.reviewCount)}</Text>
           <Text style={styles.textGray}>Reviews</Text>
         </View>
         <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{item.ratingAverage}</Text>
+          <Text style={styles.textBold}>{formatCount(item.ratingAverage)}</Text>
           <Text style={styles.textGray}>Rating</Text>
         </View>
       </View>
