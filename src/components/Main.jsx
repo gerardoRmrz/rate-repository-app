@@ -1,19 +1,14 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Route, Routes, Navigate } from "react-router-native";
+import theme from "../theme";
 
 import AppBar from "./AppBar";
 import RepositoryList from "./RepositoryList";
 import SignIn from "./Signin";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 const Main = () => {
   return (
-    <View style={styles.container}>
+    <View style={theme.container}>
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />

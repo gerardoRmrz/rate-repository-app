@@ -5,6 +5,7 @@ import theme from "../theme";
 const styles = StyleSheet.create({
   text: {
     color: theme.colors.textPrimary,
+    labelColor: theme.colors.textLabel,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fonts.main,
     fontWeight: theme.fontWeights.normal,
@@ -28,6 +29,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     styles.text,
     color === "textSecondary" && styles.colorTextSecondary,
     color === "primary" && styles.colorPrimary,
+    color === "label" && styles.labelColor,
     fontSize === "subheading" && styles.fontSizeSubheading,
     fontWeight === "bold" && styles.fontWeightBold,
     style,

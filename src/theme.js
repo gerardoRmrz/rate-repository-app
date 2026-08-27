@@ -1,4 +1,9 @@
+import { Platform } from "react-native";
+
 const theme = {
+  container: {
+    flex: 1,
+  },
   colors: {
     textPrimary: "#24292e",
     textSecondary: "#586069",
@@ -10,7 +15,14 @@ const theme = {
     subheading: 16,
   },
   fonts: {
-    main: "System",
+    main:
+      Platform.OS === "android"
+        ? "Copperplate"
+        : Platform.OS === "ios"
+          ? "Arial"
+          : Platform.OS === "web"
+            ? "Garamond"
+            : "System",
   },
   fontWeights: {
     normal: "400",

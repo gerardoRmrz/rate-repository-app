@@ -1,15 +1,7 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import Text from "./Text";
+import StatsLabel from "./StatsLabel";
 
-/* id: string;
-    fullName: string;
-    description: string;
-    language: string;
-    forksCount: number;
-    stargazersCount: number;
-    ratingAverage: number;
-    reviewCount: number;
-    ownerAvatarUrl: string;
- */
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "#F5F3FF",
@@ -48,15 +40,12 @@ const styles = StyleSheet.create({
   textGray: {
     color: "#57534D",
   },
+  wrapText: {
+    flex: 1,
+    flexWrap: "wrap",
+    marginTop: 5,
+  },
 });
-
-const formatCount = (count) => {
-  if (Math.round(count / 1000) > 0) {
-    return `${Math.round(count / 100) / 10}k`;
-  } else {
-    return `${count}`;
-  }
-};
 
 const RepositoryItem = ({ item }) => {
   return (
@@ -64,33 +53,16 @@ const RepositoryItem = ({ item }) => {
       <View style={styles.infoContainer}>
         <Image style={styles.image} source={{ uri: item.ownerAvatarUrl }} />
         <View>
-          <Text style={styles.textBold}>{item.fullName}</Text>
-          <Text style={{ flex: 1, flexWrap: "wrap", marginTop: 5 }}>
-            {item.description}
-          </Text>
+          <Text fontWeight={"bold"}>{item.fullName}</Text>
+          <Text style={styles.wrapText}>{item.description}</Text>
           <Text style={styles.language}>{item.language}</Text>
         </View>
       </View>
-
       <View style={styles.statsContainer}>
-        <View style={styles.statsItem}>
-          <Text style={styles.textBold}>
-            {formatCount(item.stargazersCount)}
-          </Text>
-          <Text style={styles.textGray}>Stars</Text>
-        </View>
-        <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{formatCount(item.forksCount)}</Text>
-          <Text style={styles.textGray}>Forks</Text>
-        </View>
-        <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{formatCount(item.reviewCount)}</Text>
-          <Text style={styles.textGray}>Reviews</Text>
-        </View>
-        <View style={styles.statsItem}>
-          <Text style={styles.textBold}>{formatCount(item.ratingAverage)}</Text>
-          <Text style={styles.textGray}>Rating</Text>
-        </View>
+        <StatsLabel name={"Stars"} value={item.stargazersCount} />
+        <StatsLabel name={"Forks"} value={item.forksCount} />
+        <StatsLabel name={"Reviews"} value={item.reviewCount} />
+        <StatsLabel name={"Rating"} value={item.ratingAverage} />
       </View>
     </View>
   );
