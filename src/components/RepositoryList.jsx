@@ -1,6 +1,7 @@
 import { FlatList, View, StyleSheet } from "react-native";
 import RepositoryItem from "./RepositoryItem";
 import useRepositories from "../hooks/useRepositories";
+import useGraphQL from "../hooks/useQuery";
 
 const styles = StyleSheet.create({
   separator: {
@@ -58,10 +59,14 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  //const { repositories } = useRepositories();
+  const { data, loading, error } = useGraphQL();
 
-  const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
+  if (loading) return <p>Loading</p>;
+  if (error) return <p>{error.message}</p>;
+
+  const repositoryNodes = data
+    ? data.repositories.edges.map((edge, index) => edge.node)
     : [];
 
   return (
@@ -69,7 +74,6 @@ const RepositoryList = () => {
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <RepositoryItem item={item} />}
-      keyExtractor={(item) => item.id}
     />
   );
 };
