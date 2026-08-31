@@ -2,9 +2,12 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 import { Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import AuthStorage from "../utils/authStorage";
 import theme from "../theme";
 
 import useSignIn from "../hooks/useSignIn";
+
+const userToken = new AuthStorage();
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("User name is required"),
@@ -22,7 +25,7 @@ const SignInForm = () => {
   const onSubmit = async (credentials) => {
     try {
       await signIn(credentials);
-      console.log(">>>>>>>>>> ", result);
+      await userToken.setAccessToken(result.data.authenticate?.accessToken);
     } catch (e) {
       console.error(e);
     }
