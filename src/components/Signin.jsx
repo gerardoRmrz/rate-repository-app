@@ -3,8 +3,9 @@ import { useFormik } from "formik";
 import { Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import AuthStorage from "../utils/authStorage";
-import theme from "../theme";
+import { useApolloClient } from "@apollo/client/react";
 
+import theme from "../theme";
 import useSignIn from "../hooks/useSignIn";
 
 const userToken = new AuthStorage();
@@ -21,11 +22,13 @@ const initialValues = {
 
 const SignInForm = () => {
   const [signIn, result] = useSignIn();
+  const apolloClient = useApolloClient();
 
   const onSubmit = async (credentials) => {
     try {
       await signIn(credentials);
-      await userToken.setAccessToken(result.data.authenticate?.accessToken);
+      await userToken.setAccessToken(result.data?.authenticate?.accessToken);
+      apolloClient.resetStore();
     } catch (e) {
       console.error(e);
     }
