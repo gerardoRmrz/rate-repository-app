@@ -6,11 +6,20 @@ class AuthStorage {
   }
 
   async getAccessToken() {
-    const accessToken = await AsyncStorage.getItem(
-      `${this.namespace}:accessToken`,
-    );
+    try {
+      const accessToken = await AsyncStorage.getItem(
+        `${this.namespace}:accessToken`,
+      );
 
-    return accessToken ? JSON.parse(accessToken) : {};
+      if (accessToken !== "undefined") {
+        return accessToken ? JSON.parse(accessToken) : {};
+      } else {
+        console.log("No data found for this token");
+        return null;
+      }
+    } catch (err) {
+      console.error("Error reading string data: ", err);
+    }
   }
 
   async setAccessToken(accessToken) {

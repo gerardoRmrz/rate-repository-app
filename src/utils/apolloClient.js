@@ -17,7 +17,7 @@ const createApolloClient = (authStorage) => {
         },
       };
     } catch (e) {
-      console.log(e);
+      console.error("Error: ", e);
       return {
         headers,
       };

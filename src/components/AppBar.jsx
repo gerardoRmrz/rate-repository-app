@@ -1,7 +1,9 @@
 import { View, StyleSheet, ScrollView } from "react-native";
-import Text from "./Text";
-import { Link } from "react-router-native";
 import Constants from "expo-constants";
+import BarLink from "./BarLink";
+
+import { useCurrentUser } from "../hooks/useQuery";
+import AuthStorage from "../utils/authStorage";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,21 +19,23 @@ const styles = StyleSheet.create({
   scrollView: {
     alignItems: "center",
   },
-  link: {
-    margin: 5,
-  },
 });
 
 const AppBar = () => {
+  const { data, error, loading } = useCurrentUser();
+
+  if (error) return <p>{error.message}</p>;
+  if (loading) return <p>...loading</p>;
+
   return (
     <View style={styles.container}>
       <ScrollView horizontal contentContainerStyle={styles.scrollView}>
-        <Link to="/" style={styles.link}>
-          <Text style={styles.text}>Repositories</Text>
-        </Link>
-        <Link to="/signin" style={styles.link}>
-          <Text style={styles.text}>Sign In</Text>
-        </Link>
+        <BarLink linkTo={"/"} label={"Repositories"} />
+        {data?.me ? (
+          <BarLink linkTo={"/signout"} label={"Sign Out"} />
+        ) : (
+          <BarLink linkTo={"/signin"} label={"Sign In"} />
+        )}
       </ScrollView>
     </View>
   );
