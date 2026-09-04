@@ -1,7 +1,12 @@
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { Text, TextInput, StyleSheet, Pressable } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import AuthStorage from "../utils/authStorage";
 import { useApolloClient } from "@apollo/client/react";
 import { Navigate } from "react-router-native";
@@ -25,9 +30,10 @@ const SignInForm = () => {
   const [signIn, result] = useSignIn();
   const apolloClient = useApolloClient();
 
-  const onSubmit = async (credentials) => {
+  const onSubmit = async (values) => {
+    console.log("******====>>>> Submit");
     try {
-      await signIn(credentials);
+      await signIn(values);
     } catch (e) {
       console.error(e);
     }
@@ -45,48 +51,44 @@ const SignInForm = () => {
     return <Navigate to={"/"} replace />;
   } else {
     return (
-      <SafeAreaProvider>
-        <SafeAreaView>
-          <TextInput
-            style={
-              formik.touched.username && formik.errors.username
-                ? styles.error
-                : styles.input
-            }
-            id="username"
-            name="username"
-            type="text"
-            placeholder="username"
-            value={formik.values.username}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur("username")}
-          />
-          {formik.touched.username && formik.errors.username && (
-            <Text style={{ color: "red" }}>{formik.errors.username}</Text>
-          )}
-          <TextInput
-            style={
-              formik.touched.password && formik.errors.password
-                ? styles.error
-                : styles.input
-            }
-            id="password"
-            name="password"
-            type="text"
-            placeholder="password"
-            secureTextEntry
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur("password")}
-          />
-          {formik.touched.password && formik.errors.password && (
-            <Text style={{ color: "red" }}>{formik.errors.password}</Text>
-          )}
-          <Pressable onPress={formik.handleSubmit} style={styles.button}>
-            <Text style={{ color: theme.colors.textLabel }}>Sign in</Text>
-          </Pressable>
-        </SafeAreaView>
-      </SafeAreaProvider>
+      <View style={{ flex: 1 }}>
+        <TextInput
+          style={
+            formik.touched.username && formik.errors.username
+              ? styles.error
+              : styles.input
+          }
+          autoCapitalize="none"
+          type="text"
+          placeholder="username"
+          value={formik.values.username}
+          onChangeText={formik.handleChange("username")}
+          onBlur={formik.handleBlur("username")}
+        />
+        {formik.touched.username && formik.errors.username && (
+          <Text style={{ color: "red" }}>{formik.errors.username}</Text>
+        )}
+        <TextInput
+          style={
+            formik.touched.password && formik.errors.password
+              ? styles.error
+              : styles.input
+          }
+          autoCapitalize="none"
+          type="text"
+          placeholder="password"
+          secureTextEntry
+          value={formik.values.password}
+          onChangeText={formik.handleChange("password")}
+          onBlur={formik.handleBlur("password")}
+        />
+        {formik.touched.password && formik.errors.password && (
+          <Text style={{ color: "red" }}>{formik.errors.password}</Text>
+        )}
+        <TouchableOpacity onPress={formik.handleSubmit} style={styles.button}>
+          <Text style={{ color: theme.colors.textLabel }}>Sign in</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 };
@@ -110,10 +112,10 @@ const styles = StyleSheet.create({
     borderColor: "red",
   },
   button: {
-    padding: 10,
-    margin: 12,
+    padding: 15,
     alignItems: "center",
     backgroundColor: theme.colors.primary,
     borderRadius: 10,
+    zIndex: 999,
   },
 });

@@ -1,9 +1,9 @@
 import { View, StyleSheet, ScrollView } from "react-native";
+import Text from "./Text";
 import Constants from "expo-constants";
 import BarLink from "./BarLink";
 
 import { useCurrentUser } from "../hooks/useQuery";
-import AuthStorage from "../utils/authStorage";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const { data, error, loading } = useCurrentUser();
 
-  if (error) return <p>{error.message}</p>;
-  if (loading) return <p>...loading</p>;
+  if (error) return <Text>Error: {error.message}</Text>;
+  if (loading) return <Text>...loading</Text>;
 
   return (
     <View style={styles.container}>
