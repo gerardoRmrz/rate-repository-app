@@ -1,5 +1,8 @@
 import { Platform } from "react-native";
 
+const primaryColor = "#0366d6";
+const ratingContainerSize = 55;
+
 const theme = {
   container: {
     flex: 1,
@@ -8,7 +11,7 @@ const theme = {
     textPrimary: "#24292e",
     textSecondary: "#586069",
     textLabel: "#F8FAFC",
-    primary: "#0366d6",
+    primary: primaryColor,
   },
   fontSizes: {
     body: 14,
@@ -45,6 +48,38 @@ const theme = {
     borderRadius: 10,
     zIndex: 999,
     color: "#F8FAFC",
+  },
+  itemContainer: {
+    backgroundColor: "#F5F3FF",
+    borderRadius: 5,
+    margin: 2,
+    padding: 4,
+  },
+  singleViewHeading: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  singleViewUserName: {
+    fontWeight: "700",
+  },
+  singleViewRating: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 24,
+    color: primaryColor,
+    marginRight: 8,
+    marginLeft: 10,
+    marginBottom: 5,
+    borderColor: primaryColor,
+    borderWidth: 2,
+    borderRadius: ratingContainerSize / 2,
+    width: ratingContainerSize,
+    height: ratingContainerSize,
+  },
+  singleViewTextReview: {
+    padding: 2,
   },
 };
 
