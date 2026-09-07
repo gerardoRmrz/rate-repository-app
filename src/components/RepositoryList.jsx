@@ -1,14 +1,7 @@
-import { View, StyleSheet } from "react-native";
-import { useGraphQL } from "../hooks/useQuery";
+import { useGetAllRepositories } from "../hooks/useQuery";
 import Text from "./Text";
 
 import RepositoryListContainer from "./RepositoryListContainer";
-
-const styles = StyleSheet.create({
-  separator: {
-    height: 10,
-  },
-});
 
 /* const repositories = [
   {
@@ -58,12 +51,14 @@ const styles = StyleSheet.create({
 ];
  */
 const RepositoryList = () => {
-  const { data, loading, error } = useGraphQL();
+  const { data, loading, error } = useGetAllRepositories();
 
   if (loading) return <Text>Loading</Text>;
   if (error) return <Text>{error.message}</Text>;
 
-  return <RepositoryListContainer repositories={data.repositories} />;
+  return (
+    <RepositoryListContainer repositories={data.repositories} single={false} />
+  );
 };
 
 export default RepositoryList;

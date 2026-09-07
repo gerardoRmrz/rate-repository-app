@@ -1,7 +1,9 @@
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, Pressable } from "react-native";
+import { openURL } from "expo-linking";
 import Text from "./Text";
 import StatsLabel from "./StatsLabel";
 
+import theme from "../theme";
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "#F5F3FF",
@@ -47,7 +49,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, single }) => {
+  const handlePress = (url) => {
+    openURL(url);
+  };
+
   return (
     <View testID="repository-item" style={styles.itemContainer}>
       <View style={styles.infoContainer}>
@@ -74,6 +80,25 @@ const RepositoryItem = ({ item }) => {
         <StatsLabel name={"Reviews"} value={item.reviewCount} />
         <StatsLabel name={"Rating"} value={item.ratingAverage} />
       </View>
+      {single ? (
+        <Pressable
+          onPress={() => handlePress(item.url)}
+          style={({ pressed }) => [
+            pressed ? theme.pressablePressed : theme.pressableNormal,
+            theme.button,
+          ]}
+        >
+          <Text
+            style={{
+              color: theme.colors.textLabel,
+              fontWeight: "bold",
+              fontSize: 18,
+            }}
+          >
+            Open in Github
+          </Text>
+        </Pressable>
+      ) : null}
     </View>
   );
 };
