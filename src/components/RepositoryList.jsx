@@ -1,8 +1,7 @@
-import { FlatList, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useGraphQL } from "../hooks/useQuery";
 import Text from "./Text";
 
-import RepositoryItem from "./RepositoryItem";
 import RepositoryListContainer from "./RepositoryListContainer";
 
 const styles = StyleSheet.create({
@@ -58,8 +57,6 @@ const styles = StyleSheet.create({
   },
 ];
  */
-const ItemSeparator = () => <View style={styles.separator} />;
-
 const RepositoryList = () => {
   const { data, loading, error } = useGraphQL();
 
