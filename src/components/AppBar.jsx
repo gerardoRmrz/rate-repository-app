@@ -32,7 +32,10 @@ const AppBar = () => {
       <ScrollView horizontal contentContainerStyle={styles.scrollView}>
         <BarLink linkTo={"/"} label={"Repositories"} />
         {data?.me ? (
-          <BarLink linkTo={"/signout"} label={"Sign Out"} />
+          <View style={{ flexDirection: "row" }}>
+            <BarLink linkTo={"/newreview"} label={"Create a review"} />
+            <BarLink linkTo={"/signout"} label={"Sign Out"} />
+          </View>
         ) : (
           <BarLink linkTo={"/signin"} label={"Sign In"} />
         )}

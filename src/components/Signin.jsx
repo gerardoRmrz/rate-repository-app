@@ -12,7 +12,6 @@ const SignInForm = () => {
   const apolloClient = useApolloClient();
 
   const onSubmit = async (values) => {
-    console.log("******====>>>> Submit");
     try {
       await signIn(values);
     } catch (e) {

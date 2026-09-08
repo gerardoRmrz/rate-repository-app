@@ -62,7 +62,7 @@ const SignInFormContainer = ({ onSubmit }) => {
         onBlur={formik.handleBlur("username")}
       />
       {formik.touched.username && formik.errors.username && (
-        <Text style={{ color: "red" }}>{formik.errors.username}</Text>
+        <Text style={theme.validationError}>{formik.errors.username}</Text>
       )}
       <TextInput
         style={
@@ -79,10 +79,10 @@ const SignInFormContainer = ({ onSubmit }) => {
         onBlur={formik.handleBlur("password")}
       />
       {formik.touched.password && formik.errors.password && (
-        <Text style={{ color: "red" }}>{formik.errors.password}</Text>
+        <Text style={theme.validationError}>{formik.errors.password}</Text>
       )}
-      <TouchableOpacity onPress={formik.handleSubmit} style={styles.button}>
-        <Text style={{ color: theme.colors.textLabel }}>Submit</Text>
+      <TouchableOpacity onPress={formik.handleSubmit} style={theme.button}>
+        <Text style={theme.buttonLabel}>Submit</Text>
       </TouchableOpacity>
     </View>
   );

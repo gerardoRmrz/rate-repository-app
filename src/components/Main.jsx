@@ -7,6 +7,7 @@ import RepositoryList from "./RepositoryList";
 import SingleRepositoryView from "./SingleRepositoryView";
 import SignIn from "./Signin";
 import SignOut from "./SignOut";
+import NewReviewForm from "./NewReviewForm";
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signout" element={<SignOut />} />
         <Route path="/sinlgeview/:id" element={<SingleRepositoryView />} />
+        <Route path="/newreview" element={<NewReviewForm />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>

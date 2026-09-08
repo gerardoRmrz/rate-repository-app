@@ -41,13 +41,17 @@ const theme = {
     transform: [{ scale: 1 }],
   },
   button: {
-    padding: 15,
-    marginTop: 10,
+    padding: 5,
+    margin: 10,
     alignItems: "center",
     backgroundColor: "#0366d6",
     borderRadius: 10,
     zIndex: 999,
     color: "#F8FAFC",
+  },
+  buttonLabel: {
+    fontSize: 20,
+    color: "#F5F3FF",
   },
   itemContainer: {
     backgroundColor: "#F5F3FF",
@@ -80,6 +84,25 @@ const theme = {
   },
   singleViewTextReview: {
     padding: 2,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 10,
+  },
+  error: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: "red",
+  },
+  validationError: {
+    color: "red",
+    paddingLeft: 12,
   },
 };
 
