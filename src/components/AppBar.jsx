@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   scrollView: {
-    alignItems: "center",
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center",
   },
 });
 
@@ -37,7 +39,10 @@ const AppBar = () => {
             <BarLink linkTo={"/signout"} label={"Sign Out"} />
           </View>
         ) : (
-          <BarLink linkTo={"/signin"} label={"Sign In"} />
+          <View style={{ flexDirection: "row" }}>
+            <BarLink linkTo={"/signin"} label={"Sign In"} />
+            <BarLink linkTo={"/signUp"} label={"Sign Up"} />
+          </View>
         )}
       </ScrollView>
     </View>

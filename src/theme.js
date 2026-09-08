@@ -67,12 +67,8 @@ const theme = {
     fontWeight: "700",
   },
   singleViewRating: {
-    display: "flex",
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: 24,
-    color: primaryColor,
     marginRight: 8,
     marginLeft: 10,
     marginBottom: 5,
@@ -81,6 +77,10 @@ const theme = {
     borderRadius: ratingContainerSize / 2,
     width: ratingContainerSize,
     height: ratingContainerSize,
+  },
+  singleViewTextRating: {
+    fontSize: 24,
+    color: primaryColor,
   },
   singleViewTextReview: {
     padding: 2,

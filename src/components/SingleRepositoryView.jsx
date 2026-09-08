@@ -21,7 +21,9 @@ const SingleRepositoryView = () => {
     return (
       <View style={theme.itemContainer}>
         <View style={theme.singleViewHeading}>
-          <Text style={theme.singleViewRating}>{review.rating}</Text>
+          <View style={theme.singleViewRating}>
+            <Text style={theme.singleViewTextRating}>{review.rating}</Text>
+          </View>
           <View>
             <Text style={theme.singleViewUserName}>{review.user.username}</Text>
             <Text>{format(review.createdAt, "dd MMM yyyy")}</Text>
