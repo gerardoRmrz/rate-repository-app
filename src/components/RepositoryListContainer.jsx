@@ -1,6 +1,7 @@
 import { FlatList, View, Pressable } from "react-native";
 import { useNavigate } from "react-router-native";
 import RepositoryItem from "./RepositoryItem";
+import OrderingMenu from "./OrderingMenu";
 
 import theme from "../theme";
 
@@ -17,6 +18,7 @@ const RepositoryListContainer = ({ repositories }) => {
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
+      ListHeaderComponent={<OrderingMenu />}
       renderItem={({ item }) => (
         <Pressable
           onPress={() => navigate(`/sinlgeview/${item.id}`)}

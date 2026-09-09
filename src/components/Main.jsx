@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View } from "react-native";
 import { Route, Routes, Navigate } from "react-router-native";
 import theme from "../theme";
@@ -20,7 +21,7 @@ const Main = () => {
         <Route path="/signout" element={<SignOut />} />
         <Route path="/sinlgeview/:id" element={<SingleRepositoryView />} />
         <Route path="/newreview" element={<NewReviewForm />} />
-        <Route path="/signUp" element={<CreateUserForm />} />
+        <Route path="/signup" element={<CreateUserForm />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>

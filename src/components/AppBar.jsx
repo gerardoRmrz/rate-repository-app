@@ -41,7 +41,7 @@ const AppBar = () => {
         ) : (
           <View style={{ flexDirection: "row" }}>
             <BarLink linkTo={"/signin"} label={"Sign In"} />
-            <BarLink linkTo={"/signUp"} label={"Sign Up"} />
+            <BarLink linkTo={"/signup"} label={"Sign Up"} />
           </View>
         )}
       </ScrollView>
