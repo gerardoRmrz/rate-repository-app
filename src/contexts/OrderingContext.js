@@ -13,7 +13,10 @@ export const useOrdering = () => {
 // 3. create a provider component
 
 export const OrderingProvider = ({ children }) => {
-  const [ordering, setOrdering] = useState("latest");
+  const [ordering, setOrdering] = useState({
+    type: "CREATED_AT",
+    direction: "DESC",
+  });
 
   return (
     <OrderingContext.Provider value={{ ordering, setOrdering }}>

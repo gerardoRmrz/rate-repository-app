@@ -52,7 +52,6 @@ import RepositoryListContainer from "./RepositoryListContainer";
  */
 const RepositoryList = () => {
   const { ordering, _ } = useOrdering();
-  console.log(ordering);
   const { data, loading, error } = useGetAllRepositories(ordering);
 
   if (loading) return <Text>Loading</Text>;

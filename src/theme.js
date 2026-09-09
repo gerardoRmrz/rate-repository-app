@@ -104,6 +104,14 @@ const theme = {
     color: "red",
     paddingLeft: 12,
   },
+  orderMenu: {
+    borderWidth: 2,
+    backgroundColor: "grey",
+  },
+  orderMenuItem: {
+    margin: 9,
+    fontSize: 16,
+  },
 };
 
 export default theme;
