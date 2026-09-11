@@ -49,8 +49,21 @@ const theme = {
     zIndex: 999,
     color: "#F8FAFC",
   },
+  buttonDelete: {
+    padding: 5,
+    margin: 10,
+    alignItems: "center",
+    backgroundColor: "red",
+    borderRadius: 10,
+    zIndex: 999,
+    color: "#F8FAFC",
+  },
   buttonLabel: {
     fontSize: 20,
+    color: "#F5F3FF",
+  },
+  smallButtonLabel: {
+    fontSize: 18,
     color: "#F5F3FF",
   },
   itemContainer: {

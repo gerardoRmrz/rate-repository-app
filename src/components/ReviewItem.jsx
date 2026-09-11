@@ -4,7 +4,6 @@ import { format } from "date-fns";
 import theme from "../theme";
 
 const ReviewItem = ({ review }) => {
-  console.log("************> ", review);
   return (
     <View style={theme.itemContainer}>
       <View style={theme.singleViewHeading}>
