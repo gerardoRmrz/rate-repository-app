@@ -1,6 +1,4 @@
 import { useOrdering } from "../contexts/OrderingContext";
-import { useGetAllRepositories } from "../hooks/useQuery";
-import Text from "./Text";
 import RepositoryListContainer from "./RepositoryListContainer";
 
 /* const repositories = [
@@ -51,14 +49,10 @@ import RepositoryListContainer from "./RepositoryListContainer";
 ];
  */
 const RepositoryList = () => {
-  const { ordering, _ } = useOrdering();
-  const { data, loading, error } = useGetAllRepositories(ordering);
-
-  if (loading) return <Text>Loading</Text>;
-  if (error) return <Text>{error.message}</Text>;
+  const { data } = useOrdering();
 
   return (
-    <RepositoryListContainer repositories={data.repositories} single={false} />
+    <RepositoryListContainer repositories={data?.repositories} single={false} />
   );
 };
 

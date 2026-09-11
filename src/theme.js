@@ -105,12 +105,16 @@ const theme = {
     paddingLeft: 12,
   },
   orderMenu: {
-    borderWidth: 2,
-    backgroundColor: "grey",
+    backgroundColor: "lightgrey",
   },
   orderMenuItem: {
     margin: 9,
     fontSize: 16,
+    backgroundColor: "#E0E0E0",
+  },
+  searchBar: {
+    backgroundColor: "#F8FAFC",
+    margin: 7,
   },
 };
 

@@ -1,8 +1,8 @@
-import { FlatList, View, Pressable } from "react-native";
+import { FlatList, View, Pressable, Text } from "react-native";
 import { useNavigate } from "react-router-native";
 import RepositoryItem from "./RepositoryItem";
 import OrderingMenu from "./OrderingMenu";
-
+import SearchBar from "./SearchBar";
 import theme from "../theme";
 
 const ItemSeparator = () => <View style={theme.separator} />;
@@ -18,7 +18,12 @@ const RepositoryListContainer = ({ repositories }) => {
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
-      ListHeaderComponent={<OrderingMenu />}
+      ListHeaderComponent={
+        <View style={{ backgroundColor: "lightgray" }}>
+          <SearchBar />
+          <OrderingMenu />
+        </View>
+      }
       renderItem={({ item }) => (
         <Pressable
           onPress={() => navigate(`/sinlgeview/${item.id}`)}
