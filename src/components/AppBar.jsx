@@ -36,6 +36,7 @@ const AppBar = () => {
         {data?.me ? (
           <View style={{ flexDirection: "row" }}>
             <BarLink linkTo={"/newreview"} label={"Create a review"} />
+            <BarLink linkTo={"/myreviews"} label={"My reviews"} />
             <BarLink linkTo={"/signout"} label={"Sign Out"} />
           </View>
         ) : (

@@ -59,10 +59,50 @@ export const GET_REPOSITORY_BY_ID = gql`
 `;
 
 export const ME = gql`
-  query {
+  query me($includeReviews: Boolean = false) {
     me {
       username
       id
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            createdAt
+            rating
+            text
+            user {
+              username
+            }
+            repository {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_CURRENT_USER = gql`
+  query getCurrentUser($includeReviews: Boolean = false) {
+    me {
+      username
+      id
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            createdAt
+            rating
+            text
+            user {
+              name
+            }
+            repository {
+              name
+            }
+          }
+        }
+      }
     }
   }
 `;

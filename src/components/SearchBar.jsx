@@ -10,12 +10,14 @@ const SearchBar = () => {
   const { setOrdering } = useOrdering();
   const [value] = useDebounce(searchKeyword, 500);
 
+  // execute just if value changes
   useEffect(() => {
     setOrdering((prev) => ({
       ...prev,
       searchKeyword: value,
     }));
   }, [value, setOrdering]);
+
   return (
     <Searchbar
       placeholder="Search"

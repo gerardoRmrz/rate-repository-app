@@ -1,12 +1,11 @@
 import { useParams } from "react-router-native";
 import { useGetRepositoriesById } from "../hooks/useQuery";
-import { Text } from "react-native";
-import { format } from "date-fns";
+import { Text, FlatList, View } from "react-native";
+
+import RepositoryItem from "./RepositoryItem";
+import ReviewItem from "./ReviewItem";
 
 import theme from "../theme";
-import RepositoryItem from "./RepositoryItem";
-import { FlatList } from "react-native";
-import { View } from "react-native";
 
 const SingleRepositoryView = () => {
   const { id } = useParams();
@@ -17,28 +16,12 @@ const SingleRepositoryView = () => {
   if (loading) return <Text>Loading</Text>;
   if (error) return <Text>{error.message}</Text>;
 
-  const ReviewItem = ({ review }) => {
-    return (
-      <View style={theme.itemContainer}>
-        <View style={theme.singleViewHeading}>
-          <View style={theme.singleViewRating}>
-            <Text style={theme.singleViewTextRating}>{review.rating}</Text>
-          </View>
-          <View>
-            <Text style={theme.singleViewUserName}>{review.user.username}</Text>
-            <Text>{format(review.createdAt, "dd MMM yyyy")}</Text>
-          </View>
-        </View>
-        <View>
-          <Text style={theme.singleViewTextReview}>{review.text}</Text>
-        </View>
-      </View>
-    );
-  };
+  const ItemSeparator = () => <View style={theme.separator} />;
 
   return (
     <FlatList
       data={reviews}
+      ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() => (

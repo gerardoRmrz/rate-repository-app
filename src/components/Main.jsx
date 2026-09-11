@@ -10,6 +10,7 @@ import SignIn from "./Signin";
 import SignOut from "./SignOut";
 import NewReviewForm from "./NewReviewForm";
 import CreateUserForm from "./CreateUserForm";
+import MyReviews from "./MyReviews";
 
 const Main = () => {
   return (
@@ -21,6 +22,7 @@ const Main = () => {
         <Route path="/signout" element={<SignOut />} />
         <Route path="/sinlgeview/:id" element={<SingleRepositoryView />} />
         <Route path="/newreview" element={<NewReviewForm />} />
+        <Route path="/myreviews" element={<MyReviews />}></Route>
         <Route path="/signup" element={<CreateUserForm />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

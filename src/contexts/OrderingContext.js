@@ -23,6 +23,8 @@ export const OrderingProvider = ({ children }) => {
 
   const { data, loading, error } = useGetAllRepositories(ordering);
 
+  // Using memoization to avoid infinite renders
+
   const value = useMemo(
     () => ({ ordering, setOrdering, data }),
     [ordering, data],
