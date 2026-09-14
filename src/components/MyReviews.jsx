@@ -1,19 +1,21 @@
 import { useQuery, useMutation } from "@apollo/client/react";
 import { ME } from "../graphql/queries";
+import { useCurrentUser } from "../hooks/useQuery";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { useNavigate } from "react-router-native";
 
 import { DELETE_REVIEW } from "../graphql/mutations";
-import { GET_REPOSITORIES } from "../graphql/queries";
 
 import ReviewItem from "./ReviewItem";
 import theme from "../theme";
 
 const MyReviews = () => {
   const navigate = useNavigate();
-  const { data, error, loading } = useQuery(ME, {
+  /*   const { data, error, loading } = useQuery(ME, {
     variables: { includeReviews: true },
   });
+ */
+  const { data, error, loading, fetchMore } = useCurrentUser();
 
   const [deleteReview, result] = useMutation(DELETE_REVIEW, {
     refetchQueries: [ME],
@@ -71,6 +73,8 @@ const MyReviews = () => {
   return (
     <FlatList
       data={reviews}
+      onEndReached={fetchMore}
+      onEndReachedThreshold={0.01}
       renderItem={({ item }) => renderItem(item)}
       keyExtractor={({ id }) => id}
     />

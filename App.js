@@ -16,7 +16,13 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={"auto"} hidden={false} />
-      <NativeRouter>
+      <NativeRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+        r
+      >
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
             <OrderingProvider>

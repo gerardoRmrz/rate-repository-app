@@ -9,7 +9,7 @@ import theme from "../theme";
 
 const SingleRepositoryView = () => {
   const { id } = useParams();
-  const { data, error, loading } = useGetRepositoriesById(id);
+  const { data, error, loading, fetchMore } = useGetRepositoriesById(id);
 
   const reviews = data?.repository.reviews.edges.map((item) => item.node);
 
@@ -21,6 +21,8 @@ const SingleRepositoryView = () => {
   return (
     <FlatList
       data={reviews}
+      onEndReached={fetchMore}
+      onEndReachedThreshold={0.5}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={({ id }) => id}

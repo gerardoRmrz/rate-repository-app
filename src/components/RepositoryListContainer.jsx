@@ -1,4 +1,4 @@
-import { FlatList, View, Pressable, Text } from "react-native";
+import { FlatList, View, Pressable } from "react-native";
 import { useNavigate } from "react-router-native";
 import RepositoryItem from "./RepositoryItem";
 import OrderingMenu from "./OrderingMenu";
@@ -7,7 +7,7 @@ import theme from "../theme";
 
 const ItemSeparator = () => <View style={theme.separator} />;
 
-const RepositoryListContainer = ({ repositories }) => {
+const RepositoryListContainer = ({ repositories, onEndReached }) => {
   const navigate = useNavigate();
 
   const repositoryNodes = repositories
@@ -34,6 +34,8 @@ const RepositoryListContainer = ({ repositories }) => {
           <RepositoryItem item={item} />
         </Pressable>
       )}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     ></FlatList>
   );
 };

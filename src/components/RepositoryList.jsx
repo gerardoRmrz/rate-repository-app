@@ -49,10 +49,14 @@ import RepositoryListContainer from "./RepositoryListContainer";
 ];
  */
 const RepositoryList = () => {
-  const { data } = useOrdering();
-
+  const { data, fetchMore } = useOrdering();
   return (
-    <RepositoryListContainer repositories={data?.repositories} single={false} />
+    <RepositoryListContainer
+      repositories={data?.repositories}
+      single={false}
+      onEndReached={fetchMore}
+      onEndReachedThreshold={0}
+    />
   );
 };
 
