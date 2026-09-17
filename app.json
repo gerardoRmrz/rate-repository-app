@@ -15,6 +15,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.grmzrso.raterepositoryapp",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -27,14 +28,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "fabcaf75-214f-414e-ad44-0f1d2cfabbc4"
+        "projectId": "da6d6ef1-80dd-47cc-a922-517995f3bfc0"
       }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/fabcaf75-214f-414e-ad44-0f1d2cfabbc4"
+      "url": "https://u.expo.dev/da6d6ef1-80dd-47cc-a922-517995f3bfc0"
     }
   }
 }
