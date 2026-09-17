@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ApolloProvider } from "@apollo/client/react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";

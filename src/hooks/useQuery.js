@@ -10,23 +10,29 @@ export const useGetAllRepositories = ({ type, direction, searchKeyword }) => {
     first: 5,
   };
 
+  console.log("<<<<<<<<<<<<<<< ", variables);
+
   const { data, loading, fetchMore, error, ...result } = useQuery(
     GET_REPOSITORIES,
     {
       variables,
+      notifyOnNetworkStatusChange: true,
+      fetchPolicy: "cache-and-network",
     },
   );
+
+  console.log(">>>>>>>>>>>>>>> ", data?.repositories?.edges);
 
   const handleFetchMore = () => {
     const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
     if (!canFetchMore) {
       return;
     }
-    console.log("******************* ", data.repositories.pageInfo.endCursor);
-    fetchMore({
+
+    return fetchMore({
       variables: {
-        after: data.repositories.pageInfo.endCursor,
         ...variables,
+        after: data.repositories.pageInfo.endCursor,
       },
     });
   };
