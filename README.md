@@ -5,6 +5,7 @@ A mobile application for rate GitHub repositories. Users can browse github-style
 # Try the App on Your Phone
 
 You can try the app on your phone by scanning the following QR code with Expo Go:
+
 ![alt text](image.png)
 
 
